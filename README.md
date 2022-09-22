@@ -1,3 +1,3 @@
 # Lux_GUI
 
-lux 图形界面初始版本，等有空慢慢完善。
+[lux](https://github.com/iawia002/lux) 图形化界面工具初始版本，等有空慢慢完善。

@@ -41,7 +41,7 @@ namespace Lux_GUI
 
         public ObservableCollection<StreamInfo> Streams { get; } = new ObservableCollection<StreamInfo>();
 
-        public string DownloadUrl { get; set; } = "https://www.bilibili.com/video/BV19D4y167sn/?spm_id_from=autoNext&vd_source=a9186f67cdf0c7ac1cc2d4f552d4dada";
+        public string DownloadUrl { get; set; }
 
         public bool CanParser { get; set; } = true;
 

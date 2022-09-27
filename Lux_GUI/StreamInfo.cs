@@ -14,6 +14,7 @@ namespace Lux_GUI
             DownloadUrl = downloadUrl;
         }
 
+        public bool IsSelected { get; set; }
         public string Site { get; set; }
 
         public string Title { get; set; }

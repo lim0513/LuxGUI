@@ -4,62 +4,74 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lux_GUI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d" Loaded="Window_Loaded"        
         Title="lux_GUI" Height="450" Width="800">
     <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" >
+                    <Setter Property="Margin" Value="5,0"/>
+                </Style>
+                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MaterialDesignLabel }" >
+                    <Setter Property="Margin" Value="5,0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" VerticalAlignment="Center">
+
+        <Grid Grid.Row="0" VerticalAlignment="Center" Height="40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="下载地址：" />
-            <TextBox Grid.Column="1" Text="{Binding DownloadUrl}" VerticalContentAlignment="Center" IsEnabled="{Binding CanParser}" />
-            <Button Grid.Column="2" Content="解析" Click="BtnParser_Click" IsEnabled="{Binding CanParser}"  />
+            <TextBox Grid.Column="1" Text="{Binding InputUrl}" VerticalContentAlignment="Center" IsEnabled="{Binding CanParser}" />
+            <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center"/>
+            <Button Grid.Column="3" Content="{Binding BtnText}" Click="BtnParser_Click" IsEnabled="{Binding CanParser}"  />
         </Grid>
-        <Grid Grid.Row="1" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="网站：" />
-            <Label Grid.Column="1" Content="{Binding DlSite}" />
-            <Label Grid.Column="2" Content="标题：" />
-            <Label Grid.Column="3" Content="{Binding DlTitle}" />
-            <Label Grid.Column="4" Content="类型：" />
-            <Label Grid.Column="5" Content="{Binding DlType}" />
-
-        </Grid>
-        <DataGrid Grid.Row="2" ItemsSource="{Binding Streams,Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True">
+        <Expander  Grid.Row="1" HorizontalAlignment="Stretch" Header="附加参数" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" BorderBrush="Blue" BorderThickness="1" Margin="5">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
+                <Button Content="下载播放列表" Margin="10" IsEnabled="{Binding CanBtnPlayList}" Click="BtnDLPlayList_Click" />
+            </StackPanel>
+        </Expander>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Streams,Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True" RowHeight="50">
             <DataGrid.Resources>
                 <Style x:Key="vCenter" TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" Width="100" ElementStyle="{StaticResource vCenter}" />
-                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" Width="*" ElementStyle="{StaticResource vCenter}" />
-                <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="200" ElementStyle="{StaticResource vCenter}" />
+                <DataGridCheckBoxColumn Header="批量下载" />
+                <DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" ElementStyle="{StaticResource vCenter}" />
+                <DataGridTextColumn Header="标题" Binding="{Binding Title}" MinWidth="300" Width="auto" ElementStyle="{StaticResource vCenter}" />
+                <DataGridTextColumn Header="流名称" Visibility="Hidden" Binding="{Binding Name}" Width="auto" ElementStyle="{StaticResource vCenter}" />
+                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" Width="auto" ElementStyle="{StaticResource vCenter}" />
+                <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="auto" ElementStyle="{StaticResource vCenter}" />
                 <DataGridTemplateColumn Header="操作" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="下载" Height="20" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Button Content="下载" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="3" VerticalAlignment="Center">
+        <Grid Grid.Row="3">
             <Label Content="{Binding LuxInfo}"/>
         </Grid>
     </Grid>

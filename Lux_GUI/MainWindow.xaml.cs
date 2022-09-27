@@ -33,13 +33,24 @@ namespace Lux_GUI
 
         public string LuxInfo { get; set; }
 
-        public string DlSite { get; set; }
+        public string BtnText => CanParser ? "解析" : "解析中";
 
-        public string DlTitle { get; set; }
-
-        public string DlType { get; set; }
+        public bool IsPlayList
+        {
+            get
+            {
+                return LuxHelper.Instance.IsPlayList;
+            }
+            set
+            {
+                LuxHelper.Instance.IsPlayList = value;
+            }
+        }
+        public bool CanBtnPlayList => IsPlayList && CanParser;
 
         public ObservableCollection<StreamInfo> Streams { get; } = new ObservableCollection<StreamInfo>();
+
+        public string InputUrl { get; set; }
 
         public string DownloadUrl { get; set; }
 
@@ -55,10 +66,14 @@ namespace Lux_GUI
             CanParser = false;
             Streams.Clear();
 
+            DownloadUrl = InputUrl;
             Task.Factory.StartNew(() =>
             {
                 try
                 {
+                    var DlSite = "";
+                    var DlTitle = "";
+                    var DlType = "";
                     StreamInfo si = new StreamInfo(DownloadUrl);
                     var result = LuxHelper.Instance.ParserUrl(DownloadUrl).Split(System.Environment.NewLine.ToCharArray());
                     for (int i = 0; i < result.Length; i++)
@@ -66,15 +81,15 @@ namespace Lux_GUI
                         var line = result[i];
                         if (line.StartsWith("Site:"))
                         {
-                            this.DlSite = line.Trim().Substring(7);
+                            DlSite = line.Trim().Substring(7);
                         }
                         else if (line.StartsWith(" Title:"))
                         {
-                            this.DlTitle = line.Trim().Substring(7);
+                            DlTitle = line.Trim().Substring(7);
                         }
                         else if (line.StartsWith(" Type:"))
                         {
-                            this.DlType = line.Split(':')[1].Trim();
+                            DlType = line.Split(':')[1].Trim();
                         }
                         else if (line.StartsWith(" Streams:"))
                         {
@@ -84,6 +99,9 @@ namespace Lux_GUI
                         {
                             si = new StreamInfo(DownloadUrl)
                             {
+                                Site = DlSite,
+                                Title = DlTitle,
+                                Type = DlType,
                                 Name = line.Substring(line.IndexOf("[") + 1, line.IndexOf("]") - line.IndexOf("[") - 1)
                             };
                             Streams.AddEx(si);
@@ -125,6 +143,18 @@ namespace Lux_GUI
                 var arg = info.Args.Substring(3);
                 arg = arg.Replace("...", info.DownloadUrl);
                 LuxHelper.Instance.Download(arg);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "错误", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnDLPlayList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                LuxHelper.Instance.Download($"-p {DownloadUrl}");
             }
             catch (Exception ex)
             {

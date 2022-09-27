@@ -14,6 +14,12 @@ namespace Lux_GUI
             DownloadUrl = downloadUrl;
         }
 
+        public string Site { get; set; }
+
+        public string Title { get; set; }
+
+        public string Type { get; set; }
+
         public string Name { get; set; }
 
         public string Quality { get; set; }

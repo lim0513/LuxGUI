@@ -17,6 +17,8 @@ namespace Lux_GUI
         private LuxHelper()
         {
         }
+
+        public bool IsPlayList { get; set; }
         public bool IsLuxExist => System.IO.File.Exists(LuxFile);
 
         public string GetLuxInfo()
@@ -56,7 +58,7 @@ namespace Lux_GUI
             using (Process p = new Process())
             {
                 AppendStartInfo(p);
-                p.StartInfo.Arguments = $"-i {downloadUrl}";
+                p.StartInfo.Arguments = (IsPlayList ? "-p" : "") + $" -i {downloadUrl}";
                 p.Start();
 
                 var output = p.StandardOutput.ReadToEnd().Trim();

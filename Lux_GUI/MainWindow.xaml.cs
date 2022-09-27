@@ -46,7 +46,7 @@ namespace Lux_GUI
                 LuxHelper.Instance.IsPlayList = value;
             }
         }
-        public bool CanBtnPlayList => IsPlayList && CanParser;
+        public bool CanBtnPlayList => IsPlayList && CanParser && !string.IsNullOrEmpty(DownloadUrl);
 
         public ObservableCollection<StreamInfo> Streams { get; } = new ObservableCollection<StreamInfo>();
 
@@ -102,7 +102,8 @@ namespace Lux_GUI
                                 Site = DlSite,
                                 Title = DlTitle,
                                 Type = DlType,
-                                Name = line.Substring(line.IndexOf("[") + 1, line.IndexOf("]") - line.IndexOf("[") - 1)
+                                Name = line.Substring(line.IndexOf("[") + 1, line.IndexOf("]") - line.IndexOf("[") - 1),
+                                CanDownload = !LuxHelper.Instance.IsPlayList,
                             };
                             Streams.AddEx(si);
                         }
@@ -154,7 +155,7 @@ namespace Lux_GUI
         {
             try
             {
-                LuxHelper.Instance.Download($"-p {DownloadUrl}");
+                LuxHelper.Instance.Download($"{DownloadUrl}");
             }
             catch (Exception ex)
             {

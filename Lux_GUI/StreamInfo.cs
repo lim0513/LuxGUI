@@ -30,5 +30,7 @@ namespace Lux_GUI
         public string Args { get; set; }
 
         public string DownloadUrl { get; }
+
+        public bool CanDownload { get; set; }
     }
 }

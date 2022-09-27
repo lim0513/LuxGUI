@@ -11,8 +11,9 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        mc:Ignorable="d" Loaded="Window_Loaded"        
-        Title="lux_GUI" Height="450" Width="800">
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        FocusManager.FocusedElement="{Binding ElementName=tb_Input}"
+        Title="lux_GUI" Height="450" Width="1200">
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
@@ -40,7 +41,7 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="下载地址：" />
-            <TextBox Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsEnabled="{Binding CanParser}" />
+            <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsEnabled="{Binding CanParser}" />
             <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center"/>
             <Button Grid.Column="3" Content="{Binding BtnText}" Click="BtnParser_Click" IsEnabled="{Binding CanParser}"  />
         </Grid>
@@ -55,20 +56,9 @@
                     <Setter Property="VerticalAlignment" Value="Center"/>
                 </Style>
 
-                <Style x:Key="DGceter" TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                     <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                <Grid Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                <Style TargetType="DataGridCell" BasedOn="{StaticResource DGceter}">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -78,19 +68,18 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                </Style>
+                </Style>            
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="选中" Binding="{Binding IsSelected}" CellStyle="{StaticResource DGceter}"/>
                 <DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" IsReadOnly="True"  />
                 <DataGridTextColumn Header="标题" Binding="{Binding Title}" MinWidth="300" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="流名称" Visibility="Hidden" Binding="{Binding Name}" Width="auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" MinWidth="100" Width="auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="质量" Binding="{Binding Quality}" MinWidth="260" Width="auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="230" Width="auto" />
                 <DataGridTemplateColumn Header="操作" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="下载" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Button Content="下载" IsEnabled="{Binding CanDownload}" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

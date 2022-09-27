@@ -72,7 +72,7 @@ namespace Lux_GUI
         {
             Process p = new Process();
             p.StartInfo.FileName = LuxFile;
-            p.StartInfo.Arguments = (IsPlayList ? "-p" : "") + arg;
+            p.StartInfo.Arguments = (IsPlayList ? "-p" : "") + " " + arg;
             p.Start();
         }
     }

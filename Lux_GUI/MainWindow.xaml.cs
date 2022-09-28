@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -33,7 +34,6 @@ namespace Lux_GUI
 
         public string LuxInfo { get; set; }
 
-        public string BtnText => CanParser ? "解析" : "解析中";
 
         public bool IsPlayList
         {
@@ -131,6 +131,11 @@ namespace Lux_GUI
                 finally
                 {
                     CanParser = true;
+                    this.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        DialogHost.Close("RootDialog");
+                    }));
+                    
                 }
             });
 

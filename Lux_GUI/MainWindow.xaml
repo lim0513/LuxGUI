@@ -13,7 +13,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d" Loaded="Window_Loaded"
         FocusManager.FocusedElement="{Binding ElementName=tb_Input}"
-        Title="lux_GUI" Height="450" Width="1200">
+        Title="lux_GUI" Height="720" Width="1280">
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>

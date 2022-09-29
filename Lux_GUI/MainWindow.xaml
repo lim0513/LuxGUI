@@ -89,7 +89,7 @@
                     <DataGridTextColumn Header="标题" Binding="{Binding Title}" MinWidth="300" Width="*" IsReadOnly="True" />
                     <DataGridTextColumn Header="流名称" Binding="{Binding Name}" MinWidth="100" Width="auto" IsReadOnly="True" />
                     <DataGridTextColumn Header="质量" Binding="{Binding Quality}" MinWidth="260" Width="auto" IsReadOnly="True" />
-                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="230" Width="auto" />
+                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="230" Width="auto" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="操作" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

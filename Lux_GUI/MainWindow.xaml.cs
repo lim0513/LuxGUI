@@ -103,7 +103,8 @@ namespace Lux_GUI
                                 Title = DlTitle,
                                 Type = DlType,
                                 Name = line.Substring(line.IndexOf("[") + 1, line.IndexOf("]") - line.IndexOf("[") - 1),
-                                CanDownload = !LuxHelper.Instance.IsPlayList,
+                                CanDownload = true,
+                                //CanDownload = !LuxHelper.Instance.IsPlayList,
                             };
                             Streams.AddEx(si);
                         }
@@ -135,7 +136,7 @@ namespace Lux_GUI
                     {
                         DialogHost.Close("RootDialog");
                     }));
-                    
+
                 }
             });
 

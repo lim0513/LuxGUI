@@ -21,48 +21,11 @@
             </ResourceDictionary>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" VerticalAlignment="Center" Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="下载地址：" />
-            <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-            <Button Grid.Column="3" Content="解析" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >
-                <Button.CommandParameter>
-                    <StackPanel Margin="16">
-                        <ProgressBar
-                              Style="{StaticResource MaterialDesignCircularProgressBar}"
-                              HorizontalAlignment="Center"
-                              Margin="16"
-                              IsIndeterminate="True"
-                              Value="0" />
-                        <Label Content="解析资源中" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Button.CommandParameter>
-            </Button>
-
-        </Grid>
-
-        <Expander Grid.Row="1" HorizontalAlignment="Stretch" Header="参数" IsExpanded="True" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" BorderBrush="Blue" BorderThickness="1" Margin="5">
-            <StackPanel Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
-                <!--<Button Content="下载播放列表" Margin="10" IsEnabled="{Binding CanBtnPlayList}" Click="BtnDLPlayList_Click" />-->
-                <Label Content="质量过滤" />
-                <ComboBox IsEditable="True" ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="150"  />
-                <Label Content="附加参数" />
-                <TextBox Text="{Binding AdditionParam}" Width="200" />
-            </StackPanel>
-        </Expander>
-        
-        <DataGrid Grid.Row="2" ItemsSource="{Binding StreamsView,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
+        <DataGrid Grid.Row="0" ItemsSource="{Binding StreamsView,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
             <DataGrid.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}" x:Key="vCenter">
                     <Setter Property="VerticalAlignment" Value="Center"/>
@@ -97,6 +60,15 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
+        <StackPanel  Grid.Row="1"  Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
+            <!--<Button Content="下载播放列表" Margin="10" IsEnabled="{Binding CanBtnPlayList}" Click="BtnDLPlayList_Click" />-->
+            <Label Content="质量过滤" />
+            <ComboBox IsEditable="True" ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="150"  />
+            <Label Content="附加参数" />
+            <TextBox Text="{Binding AdditionParam}" Width="200" />
+        </StackPanel>
+
+
     </Grid>
 </UserControl>

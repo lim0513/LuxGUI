@@ -36,8 +36,6 @@ namespace Lux_GUI
 
         public ICollectionView StreamsView { set; get; }
 
-        public string InputUrl { get; set; }
-
         public string DownloadUrl { get; set; }
 
         public string AdditionParam { get; set; }
@@ -68,7 +66,7 @@ namespace Lux_GUI
             }
         }
 
-        private void BtnParser_Click(object sender, RoutedEventArgs e)
+        public void Parser(string InputUrl)
         {
             Streams.Clear();
 

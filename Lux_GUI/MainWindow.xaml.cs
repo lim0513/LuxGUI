@@ -36,6 +36,11 @@ namespace Lux_GUI
 
         public string LuxInfo { get; set; }
 
+        public int SelectPage { get; set; } = 0;
+
+        public string InputUrl { get; set; }
+
+        public bool IsPlayList { get; set; }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,7 +48,19 @@ namespace Lux_GUI
             LuxInfo = LuxHelper.Instance.GetLuxInfo();
         }
 
-
-
+        private void BtnParser_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsPlayList)
+            {
+                this.SelectPage = 1;
+                playList.Parser(InputUrl);
+            }
+            else
+            {
+                this.SelectPage = 0;
+                singleFile.Parser(InputUrl);
+            }
+            
+        }
     }
 }

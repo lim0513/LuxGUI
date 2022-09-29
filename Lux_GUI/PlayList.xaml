@@ -21,37 +21,11 @@
             </ResourceDictionary>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" VerticalAlignment="Center" Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="下载地址：" />
-            <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-            <Button Grid.Column="3" Content="解析" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click">
-                <Button.CommandParameter>
-                    <StackPanel Margin="16">
-                        <ProgressBar
-                              Style="{StaticResource MaterialDesignCircularProgressBar}"
-                              HorizontalAlignment="Center"
-                              Margin="16"
-                              IsIndeterminate="True"
-                              Value="0" />
-                        <Label Content="解析资源中" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Button.CommandParameter>
-            </Button>
-
-        </Grid>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding StreamsView,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
+        <DataGrid Grid.Row="0" ItemsSource="{Binding StreamsView,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
             <DataGrid.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}" x:Key="vCenter">
                     <Setter Property="VerticalAlignment" Value="Center"/>
@@ -79,31 +53,27 @@
                 <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="200" Width="auto" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="2">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="流名称" />
-                <ComboBox ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="100" IsEditable="True" />
-                <RadioButton Margin="10,0" Content="全部" IsChecked="{Binding SelectAll}" />
-                <RadioButton Margin="20,0" IsChecked="{Binding SelectFromTo}">
-                    <StackPanel Orientation="Horizontal" IsEnabled="{Binding SelectFromTo}">
-                        <Label Content="开始集数"/>
-                        <TextBox Text="{Binding StartIndex}" Width="50" materialDesign:HintAssist.Hint="1" />
-                        <Label Content="结束集数"/>
-                        <TextBox Text="{Binding EndIndex}" Width="50" materialDesign:HintAssist.Hint="16" />
-                    </StackPanel>
-                </RadioButton>
-                <RadioButton Margin="20,0" IsChecked="{Binding SelectPart}">
-                    <StackPanel Orientation="Horizontal"  IsEnabled="{Binding SelectPart}">
-                        <Label Content="选集"/>
-                        <TextBox Text="{Binding SelectVideos}" Width="100"
+        <StackPanel  Grid.Row="1"  Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
+            <Label Content="流名称过滤" />
+            <ComboBox ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="100" IsEditable="True" />
+            <RadioButton Margin="10,0" Content="全部" IsChecked="{Binding SelectAll}" />
+            <RadioButton Margin="20,0" IsChecked="{Binding SelectFromTo}">
+                <StackPanel Orientation="Horizontal" IsEnabled="{Binding SelectFromTo}">
+                    <Label Content="开始集数"/>
+                    <TextBox Text="{Binding StartIndex}" Width="50" materialDesign:HintAssist.Hint="1" />
+                    <Label Content="结束集数"/>
+                    <TextBox Text="{Binding EndIndex}" Width="50" materialDesign:HintAssist.Hint="16" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Margin="20,0" IsChecked="{Binding SelectPart}">
+                <StackPanel Orientation="Horizontal"  IsEnabled="{Binding SelectPart}">
+                    <Label Content="选集"/>
+                    <TextBox Text="{Binding SelectVideos}" Width="100"
                             materialDesign:HintAssist.Hint="1,5,6,8-10" />
 
-                    </StackPanel>
-                </RadioButton>
-
-
-            </StackPanel>
-            <Button Content="下载" HorizontalAlignment="Right" Margin="5,0" Click="BtnDLPlayList_Click" />
-        </Grid>
+                </StackPanel>
+            </RadioButton>
+            <Button Content="下载" Margin="5,0" Click="BtnDownload_Click" />
+        </StackPanel>
     </Grid>
 </UserControl>

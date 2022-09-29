@@ -17,18 +17,44 @@
     <materialDesign:DialogHost Identifier="RootDialog">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
-            <TabControl Style="{StaticResource MaterialDesignFilledTabControl}">
-                <TabItem Header="单一文件" >
-                    <local:SingleFile/>
+            <Grid Grid.Row="0" VerticalAlignment="Center" Height="40" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="下载地址：" VerticalContentAlignment="Center" />
+                <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                <CheckBox Grid.Column="2" Content="播放列表" Margin="10" IsChecked="{Binding IsPlayList}" />
+                <Button Grid.Column="3" Margin="10,0" Content="解析" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >
+                    <Button.CommandParameter>
+                        <StackPanel Margin="16">
+                            <ProgressBar
+                              Style="{StaticResource MaterialDesignCircularProgressBar}"
+                              HorizontalAlignment="Center"
+                              Margin="16"
+                              IsIndeterminate="True"
+                              Value="0" />
+                            <Label Content="解析资源中" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.CommandParameter>
+                </Button>
+
+            </Grid>
+            <TabControl Grid.Row="1" Style="{StaticResource MaterialDesignFilledTabControl}" SelectedIndex="{Binding SelectPage}">
+                <TabItem Header="单一文件" Visibility="Collapsed">
+                    <local:SingleFile x:Name="singleFile"/>
                 </TabItem>
-                <TabItem Header="播放列表" >
-                    <local:PlayList/>
+                <TabItem Header="播放列表" Visibility="Collapsed" >
+                    <local:PlayList x:Name="playList"/>
                 </TabItem>
             </TabControl>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Label Content="{Binding LuxInfo}"/>
             </Grid>
         </Grid>

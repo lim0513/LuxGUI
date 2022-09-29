@@ -36,8 +36,6 @@ namespace Lux_GUI
 
         public ICollectionView StreamsView { set; get; }
 
-        public string InputUrl { get; set; }
-
         public string DownloadUrl { get; set; }
 
         public bool SelectAll { get; set; } = true;
@@ -77,7 +75,7 @@ namespace Lux_GUI
             }
         }
 
-        private void BtnParser_Click(object sender, RoutedEventArgs e)
+        public void Parser(string InputUrl)
         {
             Streams.Clear();
 
@@ -154,22 +152,13 @@ namespace Lux_GUI
 
         }
 
-        private void BtnAction_Click(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var info = ((Button)sender).DataContext as StreamInfo;
-                var arg = info.Args.Substring(3);
-                arg = arg.Replace("...", info.DownloadUrl);
-                LuxHelper.Instance.Download(arg);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "错误", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
-            }
+            StreamsView = CollectionViewSource.GetDefaultView(Streams);
+            ComboboxView = CollectionViewSource.GetDefaultView(Streams.GroupBy(x => x.Name).Select(g => g.Key));
         }
 
-        private void BtnDLPlayList_Click(object sender, RoutedEventArgs e)
+        private void BtnDownload_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -197,12 +186,6 @@ namespace Lux_GUI
             {
                 MessageBox.Show(ex.Message, "错误", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
             }
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            StreamsView = CollectionViewSource.GetDefaultView(Streams);
-            ComboboxView = CollectionViewSource.GetDefaultView(Streams.GroupBy(x => x.Name).Select(g => g.Key));
         }
     }
 }

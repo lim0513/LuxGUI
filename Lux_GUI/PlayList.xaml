@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Lux_GUI.PlayList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Lux_GUI"
+      mc:Ignorable="d"  Loaded="Page_Loaded"
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}" >
+                    <Setter Property="Margin" Value="5,0"/>
+                </Style>
+                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MaterialDesignLabel }" >
+                    <Setter Property="Margin" Value="5,0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" VerticalAlignment="Center" Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="下载地址：" />
+            <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center" Visibility="Collapsed"/>
+            <Button Grid.Column="3" Content="解析" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click">
+                <Button.CommandParameter>
+                    <StackPanel Margin="16">
+                        <ProgressBar
+                              Style="{StaticResource MaterialDesignCircularProgressBar}"
+                              HorizontalAlignment="Center"
+                              Margin="16"
+                              IsIndeterminate="True"
+                              Value="0" />
+                        <Label Content="解析资源中" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button.CommandParameter>
+            </Button>
+
+        </Grid>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding StreamsView,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
+            <DataGrid.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}" x:Key="vCenter">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" IsReadOnly="True"  />
+                <DataGridTextColumn Header="标题" Binding="{Binding Title}" MinWidth="300" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" MinWidth="50" Width="auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" MinWidth="200" Width="auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="200" Width="auto" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="流名称" />
+                <ComboBox ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="100" IsEditable="True" />
+                <RadioButton Margin="10,0" Content="全部" IsChecked="{Binding SelectAll}" />
+                <RadioButton Margin="20,0" IsChecked="{Binding SelectFromTo}">
+                    <StackPanel Orientation="Horizontal" IsEnabled="{Binding SelectFromTo}">
+                        <Label Content="开始集数"/>
+                        <TextBox Text="{Binding StartIndex}" Width="50" materialDesign:HintAssist.Hint="1" />
+                        <Label Content="结束集数"/>
+                        <TextBox Text="{Binding EndIndex}" Width="50" materialDesign:HintAssist.Hint="16" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Margin="20,0" IsChecked="{Binding SelectPart}">
+                    <StackPanel Orientation="Horizontal"  IsEnabled="{Binding SelectPart}">
+                        <Label Content="选集"/>
+                        <TextBox Text="{Binding SelectVideos}" Width="100"
+                            materialDesign:HintAssist.Hint="1,5,6,8-10" />
+
+                    </StackPanel>
+                </RadioButton>
+
+
+            </StackPanel>
+            <Button Content="下载" HorizontalAlignment="Right" Margin="5,0" Click="BtnDLPlayList_Click" />
+        </Grid>
+    </Grid>
+</UserControl>

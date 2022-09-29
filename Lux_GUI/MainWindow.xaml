@@ -43,7 +43,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="下载地址：" />
                 <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsEnabled="{Binding CanParser}" />
-                <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center"/>
+                <CheckBox Grid.Column="2" Content="播放列表" IsChecked="{Binding IsPlayList}" VerticalContentAlignment="Center" Visibility="Collapsed"/>
                 <Button Grid.Column="3" Content="解析" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" IsEnabled="{Binding CanParser}"  >
                     <Button.CommandParameter>
                         <StackPanel Margin="16">
@@ -57,14 +57,16 @@
                         </StackPanel>
                     </Button.CommandParameter>
                 </Button>
-              
+
             </Grid>
-            <Expander  Grid.Row="1" HorizontalAlignment="Stretch" Header="附加参数" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" BorderBrush="Blue" BorderThickness="1" Margin="5">
-                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
-                    <Button Content="下载播放列表" Margin="10" IsEnabled="{Binding CanBtnPlayList}" Click="BtnDLPlayList_Click" />
+            <Expander Grid.Row="1" HorizontalAlignment="Stretch" Header="参数" IsExpanded="True" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" BorderBrush="Blue" BorderThickness="1" Margin="5">
+                <StackPanel Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
+                    <!--<Button Content="下载播放列表" Margin="10" IsEnabled="{Binding CanBtnPlayList}" Click="BtnDLPlayList_Click" />-->
+                    <Label Content="质量过滤" />
+                    <ComboBox IsEditable="True" ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="150"  />
                 </StackPanel>
             </Expander>
-            <DataGrid Grid.Row="2" ItemsSource="{Binding Streams,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
+            <DataGrid Grid.Row="2" ItemsSource="{Binding StreamsView,Mode=OneWay}" AutoGenerateColumns="False" RowHeight="50">
                 <DataGrid.Resources>
                     <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}" x:Key="vCenter">
                         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -87,10 +89,10 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" IsReadOnly="True"  />
                     <DataGridTextColumn Header="标题" Binding="{Binding Title}" MinWidth="300" Width="*" IsReadOnly="True" />
-                    <DataGridTextColumn Header="流名称" Binding="{Binding Name}" MinWidth="100" Width="auto" IsReadOnly="True" />
-                    <DataGridTextColumn Header="质量" Binding="{Binding Quality}" MinWidth="260" Width="auto" IsReadOnly="True" />
-                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="230" Width="auto" IsReadOnly="True" />
-                    <DataGridTemplateColumn Header="操作" Width="100">
+                    <DataGridTextColumn Header="流名称" Binding="{Binding Name}" MinWidth="50" Width="auto" IsReadOnly="True" />
+                    <DataGridTextColumn Header="质量" Binding="{Binding Quality}" MinWidth="200" Width="auto" IsReadOnly="True" />
+                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="200" Width="auto" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="操作" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="下载" IsEnabled="{Binding CanDownload}" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>

@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -50,6 +52,10 @@ namespace Lux_GUI
 
         public ObservableCollection<StreamInfo> Streams { get; } = new ObservableCollection<StreamInfo>();
 
+        public ICollectionView ComboboxView { get; set; }
+
+        public ICollectionView StreamsView { set; get; }
+
         public string InputUrl { get; set; }
 
         public string DownloadUrl { get; set; }
@@ -60,7 +66,36 @@ namespace Lux_GUI
         {
             this.IsEnabled = LuxHelper.Instance.IsLuxExist;
             LuxInfo = LuxHelper.Instance.GetLuxInfo();
+            StreamsView = CollectionViewSource.GetDefaultView(Streams);
+            ComboboxView = CollectionViewSource.GetDefaultView(Streams.GroupBy(x => x.Quality).Select(g => g.Key));
         }
+
+        public bool OnComboFilterTriggered(object item)
+        {
+            if (!string.IsNullOrEmpty(SelectedQuality))
+            {
+                var lookup = item as StreamInfo;
+                return lookup != null && lookup.Quality.Contains(SelectedQuality);
+            }
+            return true;
+        }
+
+
+        private string _selectedQuality;
+        public string SelectedQuality
+        {
+            get
+            {
+                return _selectedQuality;
+            }
+            set
+            {
+                _selectedQuality = value;
+                CollectionViewSource.GetDefaultView(Streams).Filter = OnComboFilterTriggered;
+                StreamsView.Refresh();
+            }
+        }
+
         private void BtnParser_Click(object sender, RoutedEventArgs e)
         {
             CanParser = false;
@@ -135,8 +170,8 @@ namespace Lux_GUI
                     this.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         DialogHost.Close("RootDialog");
+                        ComboboxView.Refresh();
                     }));
-
                 }
             });
 

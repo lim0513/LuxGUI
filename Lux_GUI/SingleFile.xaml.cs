@@ -135,6 +135,7 @@ namespace Lux_GUI
                 {
                     this.Dispatcher.BeginInvoke(new Action(() =>
                     {
+                        datagrid.UpdateLayout();
                         DialogHost.Close("RootDialog");
                         ComboboxView.Refresh();
                     }));

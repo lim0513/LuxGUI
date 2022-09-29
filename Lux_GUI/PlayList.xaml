@@ -38,7 +38,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                 <Grid Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ContentPresenter HorizontalAlignment="Left" Margin="13,0" VerticalAlignment="Center" />
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
@@ -46,11 +46,11 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" IsReadOnly="True"  />
-                <DataGridTextColumn Header="标题" Binding="{Binding Title}" MinWidth="300" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" MinWidth="50" Width="auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" MinWidth="200" Width="auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="大小" Binding="{Binding Size}" MinWidth="200" Width="auto" IsReadOnly="True" />
+                <!--<DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" IsReadOnly="True"  />-->
+                <DataGridTextColumn Header="标题" Binding="{Binding Title}" Width="3*" IsReadOnly="True" />
+                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" Width="150" IsReadOnly="True" />
+                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel  Grid.Row="1"  Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">

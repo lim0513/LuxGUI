@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lux_GUI"
+        xmlns:props="clr-namespace:Lux_GUI.Properties"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
@@ -34,10 +35,10 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="下载地址：" VerticalContentAlignment="Center" />
+                <Label Grid.Column="0" Content="{x:Static props:Resources.LbDownloadURL}" VerticalContentAlignment="Center" />
                 <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-                <CheckBox Grid.Column="2" Content="播放列表" Margin="10" IsChecked="{Binding IsPlayList}" />
-                <Button Grid.Column="3" Margin="10,0" Content="解析" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >
+                <CheckBox Grid.Column="2" Content="{x:Static props:Resources.CbPlayLists}" Margin="10" IsChecked="{Binding IsPlayList}" />
+                <Button Grid.Column="3" Margin="10,0" Content="{x:Static props:Resources.BtnParse}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >
                     <Button.CommandParameter>
                         <StackPanel Margin="16">
                             <ProgressBar
@@ -46,17 +47,17 @@
                               Margin="16"
                               IsIndeterminate="True"
                               Value="0" />
-                            <Label Content="解析资源中" HorizontalAlignment="Center"/>
+                            <Label Content="{x:Static props:Resources.LbParsing}" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Button.CommandParameter>
                 </Button>
 
             </Grid>
             <TabControl Grid.Row="1" Style="{StaticResource MaterialDesignFilledTabControl}" SelectedIndex="{Binding SelectPage}">
-                <TabItem Header="单一文件" Visibility="Collapsed">
+                <TabItem Visibility="Collapsed">
                     <local:SingleFile x:Name="singleFile"/>
                 </TabItem>
-                <TabItem Header="播放列表" Visibility="Collapsed" >
+                <TabItem Visibility="Collapsed" >
                     <local:PlayList x:Name="playList"/>
                 </TabItem>
             </TabControl>

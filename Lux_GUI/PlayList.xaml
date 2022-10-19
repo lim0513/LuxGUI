@@ -4,9 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:props="clr-namespace:Lux_GUI.Properties"
       xmlns:local="clr-namespace:Lux_GUI"
       mc:Ignorable="d"  Loaded="Page_Loaded"
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450" d:DesignWidth="900">
 
     <Grid>
         <Grid.Resources>
@@ -47,33 +48,33 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="网站" Binding="{Binding Site}" MinWidth="200" Width="auto" IsReadOnly="True"  />-->
-                <DataGridTextColumn Header="标题" Binding="{Binding Title}" Width="3*" IsReadOnly="True" />
-                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" Width="150" IsReadOnly="True" />
-                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="{x:Static props:Resources.HTitle}" Binding="{Binding Title}" Width="3*" IsReadOnly="True" />
+                <DataGridTextColumn Header="{x:Static props:Resources.HName}" Binding="{Binding Name}" Width="150" IsReadOnly="True" />
+                <DataGridTextColumn Header="{x:Static props:Resources.HQuality}" Binding="{Binding Quality}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="{x:Static props:Resources.HSize}" Binding="{Binding Size}" Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel  Grid.Row="1"  Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
-            <Label Content="流名称过滤" />
+            <Label Content="{x:Static props:Resources.LbNameFilter}" />
             <ComboBox ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="100" IsEditable="True" />
-            <RadioButton Margin="10,0" Content="全部" IsChecked="{Binding SelectAll}" />
+            <RadioButton Margin="10,0" Content="{x:Static props:Resources.RbSelectAll}" IsChecked="{Binding SelectAll}" />
             <RadioButton Margin="20,0" IsChecked="{Binding SelectFromTo}">
                 <StackPanel Orientation="Horizontal" IsEnabled="{Binding SelectFromTo}">
-                    <Label Content="开始集数"/>
+                    <Label Content="{x:Static props:Resources.LbFrom}"/>
                     <TextBox Text="{Binding StartIndex}" Width="50" materialDesign:HintAssist.Hint="1" />
-                    <Label Content="结束集数"/>
+                    <Label Content="{x:Static props:Resources.LbTo}"/>
                     <TextBox Text="{Binding EndIndex}" Width="50" materialDesign:HintAssist.Hint="16" />
                 </StackPanel>
             </RadioButton>
             <RadioButton Margin="20,0" IsChecked="{Binding SelectPart}">
                 <StackPanel Orientation="Horizontal"  IsEnabled="{Binding SelectPart}">
-                    <Label Content="选集"/>
+                    <Label Content="{x:Static props:Resources.LbSelect}"/>
                     <TextBox Text="{Binding SelectVideos}" Width="100"
                             materialDesign:HintAssist.Hint="1,5,6,8-10" />
 
                 </StackPanel>
             </RadioButton>
-            <Button Content="下载" Margin="5,0" Click="BtnDownload_Click" />
+            <Button Content="{x:Static props:Resources.BtnDownload}" Margin="5,0" Click="BtnDownload_Click" />
         </StackPanel>
     </Grid>
 </UserControl>

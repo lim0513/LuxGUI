@@ -24,4 +24,43 @@
   <data name="LbParsing" xml:space="preserve">
     <value>Parsing</value>
   </data>
+  <data name="HName" xml:space="preserve">
+    <value>Stream name</value>
+  </data>
+  <data name="HQuality" xml:space="preserve">
+    <value>quality</value>
+  </data>
+  <data name="HSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="HTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="LbNameFilter" xml:space="preserve">
+    <value>Filter by Name</value>
+  </data>
+  <data name="RbSelectAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="LbFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="LbTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="LbSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="BtnDownload" xml:space="preserve">
+    <value>download</value>
+  </data>
+  <data name="HOperation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="LbAdditionalParameters" xml:space="preserve">
+    <value>Addl Params</value>
+  </data>
+  <data name="LbQualityFilter" xml:space="preserve">
+    <value>Filter by Quality </value>
+  </data>
 </root>

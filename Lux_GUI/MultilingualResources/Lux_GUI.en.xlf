@@ -22,6 +22,58 @@
           <source>解析资源中</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Parsing</target>
         </trans-unit>
+        <trans-unit id="HName" translate="yes" xml:space="preserve">
+          <source>流名称</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Stream name</target>
+        </trans-unit>
+        <trans-unit id="HQuality" translate="yes" xml:space="preserve">
+          <source>质量</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">quality</target>
+        </trans-unit>
+        <trans-unit id="HSize" translate="yes" xml:space="preserve">
+          <source>大小</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Size</target>
+        </trans-unit>
+        <trans-unit id="HTitle" translate="yes" xml:space="preserve">
+          <source>标题</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Title</target>
+        </trans-unit>
+        <trans-unit id="LbNameFilter" translate="yes" xml:space="preserve">
+          <source>流名称过滤</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Filter by Name</target>
+        </trans-unit>
+        <trans-unit id="RbSelectAll" translate="yes" xml:space="preserve">
+          <source>全选</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">All</target>
+        </trans-unit>
+        <trans-unit id="LbFrom" translate="yes" xml:space="preserve">
+          <source>开始集数</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">From</target>
+        </trans-unit>
+        <trans-unit id="LbTo" translate="yes" xml:space="preserve">
+          <source>结束集数</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">To</target>
+        </trans-unit>
+        <trans-unit id="LbSelect" translate="yes" xml:space="preserve">
+          <source>选集</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Select</target>
+        </trans-unit>
+        <trans-unit id="BtnDownload" translate="yes" xml:space="preserve">
+          <source>下载</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">download</target>
+        </trans-unit>
+        <trans-unit id="HOperation" translate="yes" xml:space="preserve">
+          <source>操作</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Operation</target>
+        </trans-unit>
+        <trans-unit id="LbAdditionalParameters" translate="yes" xml:space="preserve">
+          <source>附加参数</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Addl Params</target>
+        </trans-unit>
+        <trans-unit id="LbQualityFilter" translate="yes" xml:space="preserve">
+          <source>质量过滤</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Filter by Quality </target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:props="clr-namespace:Lux_GUI.Properties"
       xmlns:local="clr-namespace:Lux_GUI"
       mc:Ignorable="d"  Loaded="Page_Loaded"
       d:DesignHeight="450" d:DesignWidth="800">
@@ -62,13 +63,13 @@
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="网站" Binding="{Binding Site}" Width="*" IsReadOnly="True"  />
                 <DataGridTextColumn Header="标题" Binding="{Binding Title}" Width="3*" IsReadOnly="True" />-->
-                <DataGridTextColumn Header="流名称" Binding="{Binding Name}" Width="150" IsReadOnly="True" />
-                <DataGridTextColumn Header="质量" Binding="{Binding Quality}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="*" IsReadOnly="True" />
-                <DataGridTemplateColumn Header="操作" Width="120">
+                <DataGridTextColumn Header="{x:Static props:Resources.HName}" Binding="{Binding Name}" Width="150" IsReadOnly="True" />
+                <DataGridTextColumn Header="{x:Static props:Resources.HQuality}" Binding="{Binding Quality}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="{x:Static props:Resources.HSize}" Binding="{Binding Size}" Width="*" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="{x:Static props:Resources.HOperation}" Width="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="下载" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Button Content="{x:Static props:Resources.BtnDownload}" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="3,1" Click="BtnAction_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -77,9 +78,9 @@
 
         <StackPanel  Grid.Row="1"  Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" Height="auto">
             <!--<Button Content="下载播放列表" Margin="10" IsEnabled="{Binding CanBtnPlayList}" Click="BtnDLPlayList_Click" />-->
-            <Label Content="质量过滤" />
+            <Label Content="{x:Static props:Resources.LbQualityFilter}" />
             <ComboBox IsEditable="True" ItemsSource="{Binding ComboboxView}" Text="{Binding SelectedQuality,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="150"  />
-            <Label Content="附加参数" />
+            <Label Content="{x:Static props:Resources.LbAdditionalParameters}" />
             <TextBox Text="{Binding AdditionParam}" Width="200" />
         </StackPanel>
 

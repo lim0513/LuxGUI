@@ -117,16 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnDownload" xml:space="preserve">
+    <value>下载</value>
+  </data>
   <data name="BtnParse" xml:space="preserve">
     <value>解析</value>
   </data>
   <data name="CbPlayLists" xml:space="preserve">
     <value>播放列表</value>
   </data>
+  <data name="HName" xml:space="preserve">
+    <value>流名称</value>
+  </data>
+  <data name="HOperation" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="HQuality" xml:space="preserve">
+    <value>质量</value>
+  </data>
+  <data name="HSize" xml:space="preserve">
+    <value>大小</value>
+  </data>
+  <data name="HTitle" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="LbAdditionalParameters" xml:space="preserve">
+    <value>附加参数</value>
+  </data>
   <data name="LbDownloadURL" xml:space="preserve">
     <value>下载地址</value>
   </data>
+  <data name="LbFrom" xml:space="preserve">
+    <value>开始集数</value>
+  </data>
+  <data name="LbNameFilter" xml:space="preserve">
+    <value>流名称过滤</value>
+  </data>
   <data name="LbParsing" xml:space="preserve">
     <value>解析资源中</value>
+  </data>
+  <data name="LbQualityFilter" xml:space="preserve">
+    <value>质量过滤</value>
+  </data>
+  <data name="LbSelect" xml:space="preserve">
+    <value>选集</value>
+  </data>
+  <data name="LbTo" xml:space="preserve">
+    <value>结束集数</value>
+  </data>
+  <data name="RbSelectAll" xml:space="preserve">
+    <value>全选</value>
   </data>
 </root>

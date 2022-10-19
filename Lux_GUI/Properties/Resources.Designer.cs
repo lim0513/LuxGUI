@@ -61,6 +61,15 @@ namespace Lux_GUI.Properties {
         }
         
         /// <summary>
+        ///   查找类似 下载 的本地化字符串。
+        /// </summary>
+        public static string BtnDownload {
+            get {
+                return ResourceManager.GetString("BtnDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 解析 的本地化字符串。
         /// </summary>
         public static string BtnParse {
@@ -79,6 +88,60 @@ namespace Lux_GUI.Properties {
         }
         
         /// <summary>
+        ///   查找类似 流名称 的本地化字符串。
+        /// </summary>
+        public static string HName {
+            get {
+                return ResourceManager.GetString("HName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 操作 的本地化字符串。
+        /// </summary>
+        public static string HOperation {
+            get {
+                return ResourceManager.GetString("HOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 质量 的本地化字符串。
+        /// </summary>
+        public static string HQuality {
+            get {
+                return ResourceManager.GetString("HQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 大小 的本地化字符串。
+        /// </summary>
+        public static string HSize {
+            get {
+                return ResourceManager.GetString("HSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 标题 的本地化字符串。
+        /// </summary>
+        public static string HTitle {
+            get {
+                return ResourceManager.GetString("HTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 附加参数 的本地化字符串。
+        /// </summary>
+        public static string LbAdditionalParameters {
+            get {
+                return ResourceManager.GetString("LbAdditionalParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 下载地址 的本地化字符串。
         /// </summary>
         public static string LbDownloadURL {
@@ -88,11 +151,65 @@ namespace Lux_GUI.Properties {
         }
         
         /// <summary>
+        ///   查找类似 开始集数 的本地化字符串。
+        /// </summary>
+        public static string LbFrom {
+            get {
+                return ResourceManager.GetString("LbFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 流名称过滤 的本地化字符串。
+        /// </summary>
+        public static string LbNameFilter {
+            get {
+                return ResourceManager.GetString("LbNameFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 解析资源中 的本地化字符串。
         /// </summary>
         public static string LbParsing {
             get {
                 return ResourceManager.GetString("LbParsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 质量过滤 的本地化字符串。
+        /// </summary>
+        public static string LbQualityFilter {
+            get {
+                return ResourceManager.GetString("LbQualityFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 选集 的本地化字符串。
+        /// </summary>
+        public static string LbSelect {
+            get {
+                return ResourceManager.GetString("LbSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 结束集数 的本地化字符串。
+        /// </summary>
+        public static string LbTo {
+            get {
+                return ResourceManager.GetString("LbTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 全选 的本地化字符串。
+        /// </summary>
+        public static string RbSelectAll {
+            get {
+                return ResourceManager.GetString("RbSelectAll", resourceCulture);
             }
         }
     }

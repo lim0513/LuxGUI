@@ -63,4 +63,7 @@
   <data name="LbQualityFilter" xml:space="preserve">
     <value>Filter by Quality </value>
   </data>
+  <data name="LbNoLuxHit" xml:space="preserve">
+    <value>lux: Download lux and ffmpeg files then put them in the folder of this application </value>
+  </data>
 </root>

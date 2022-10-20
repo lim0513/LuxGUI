@@ -169,6 +169,15 @@ namespace Lux_GUI.Properties {
         }
         
         /// <summary>
+        ///   查找类似 lux: 请下载lux与ffmpeg文件放到此程序运行文件夹内 的本地化字符串。
+        /// </summary>
+        public static string LbNoLuxHit {
+            get {
+                return ResourceManager.GetString("LbNoLuxHit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 解析资源中 的本地化字符串。
         /// </summary>
         public static string LbParsing {

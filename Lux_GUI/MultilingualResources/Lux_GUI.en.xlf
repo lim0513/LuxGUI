@@ -74,6 +74,10 @@
           <source>质量过滤</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Filter by Quality </target>
         </trans-unit>
+        <trans-unit id="LbNoLuxHit" translate="yes" xml:space="preserve">
+          <source>lux: 请下载lux与ffmpeg文件放到此程序运行文件夹内</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">lux: Download lux and ffmpeg files then put them in the folder of this application </target>
+        </trans-unit>
       </group>
     </body>
   </file>

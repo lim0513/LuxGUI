@@ -37,7 +37,7 @@ namespace Lux_GUI
             }
             else
             {
-                return "lux: 请下载lux与ffmpeg文件放到此程序运行文件夹内";
+                return Properties.Resources.LbNoLuxHit;
             }
         }
 

@@ -153,6 +153,9 @@
   <data name="LbNameFilter" xml:space="preserve">
     <value>流名称过滤</value>
   </data>
+  <data name="LbNoLuxHit" xml:space="preserve">
+    <value>lux: 请下载lux与ffmpeg文件放到此程序运行文件夹内</value>
+  </data>
   <data name="LbParsing" xml:space="preserve">
     <value>解析资源中</value>
   </data>

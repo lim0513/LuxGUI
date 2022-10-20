@@ -20,7 +20,7 @@
         Title="lux_GUI" Height="720" Width="1280">
     <controls:MetroWindow.WindowButtonCommands>
         <controls:WindowButtonCommands Style="{StaticResource MahApps.Styles.WindowButtonCommands.Win10}" />
-    </controls:MetroWindow.WindowButtonCommands>  
+    </controls:MetroWindow.WindowButtonCommands>
     <materialDesign:DialogHost Identifier="RootDialog">
         <Grid>
             <Grid.RowDefinitions>
@@ -30,12 +30,12 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" VerticalAlignment="Center" Height="40" Margin="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="{x:Static props:Resources.LbDownloadURL}" VerticalContentAlignment="Center" />
+                <Label Grid.Column="0" Content="{x:Static props:Resources.LbDownloadURL}" VerticalContentAlignment="Center" Margin="5,0" />
                 <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                 <CheckBox Grid.Column="2" Content="{x:Static props:Resources.CbPlayLists}" Margin="10" IsChecked="{Binding IsPlayList}" />
                 <Button Grid.Column="3" Margin="10,0" Content="{x:Static props:Resources.BtnParse}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >

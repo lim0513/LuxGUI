@@ -38,7 +38,7 @@
                 <Label Grid.Column="0" Content="{x:Static props:Resources.LbDownloadURL}" VerticalContentAlignment="Center" Margin="5,0" />
                 <TextBox x:Name="tb_Input" Grid.Column="1" Text="{Binding InputUrl}" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                 <CheckBox Grid.Column="2" Content="{x:Static props:Resources.CbPlayLists}" Margin="10" IsChecked="{Binding IsPlayList}" />
-                <Button Grid.Column="3" Margin="10,0" Content="{x:Static props:Resources.BtnParse}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >
+                <Button Grid.Column="3" Margin="10,0" Content="{x:Static props:Resources.BtnParse}" IsEnabled="{Binding HasLux}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="BtnParser_Click" >
                     <Button.CommandParameter>
                         <StackPanel Margin="16">
                             <ProgressBar

@@ -43,9 +43,10 @@ namespace Lux_GUI
 
         public bool IsPlayList { get; set; }
 
+        public bool HasLux => LuxHelper.Instance.IsLuxExist;
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.IsEnabled = LuxHelper.Instance.IsLuxExist;
             LuxInfo = LuxHelper.Instance.GetLuxInfo();
         }
 
@@ -61,7 +62,7 @@ namespace Lux_GUI
                 this.SelectPage = 0;
                 singleFile.Parser(InputUrl);
             }
-            
+
         }
     }
 }

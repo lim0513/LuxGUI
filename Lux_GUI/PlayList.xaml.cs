@@ -48,6 +48,7 @@ namespace Lux_GUI
         public string EndIndex { get; set; }
         public string SelectVideos { get; set; }
 
+        public string AdditionParam { get; set; }
 
         public bool OnComboFilterTriggered(object item)
         {
@@ -180,6 +181,8 @@ namespace Lux_GUI
                     if (!string.IsNullOrEmpty(SelectVideos))
                         arg = $"-items {SelectVideos} " + arg;
                 }
+                if (!string.IsNullOrEmpty(AdditionParam))
+                    arg = AdditionParam + " " + arg;
                 LuxHelper.Instance.Download(arg);
             }
             catch (Exception ex)

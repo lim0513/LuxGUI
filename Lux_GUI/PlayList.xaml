@@ -7,7 +7,7 @@
       xmlns:props="clr-namespace:Lux_GUI.Properties"
       xmlns:local="clr-namespace:Lux_GUI"
       mc:Ignorable="d"  Loaded="Page_Loaded"
-      d:DesignHeight="450" d:DesignWidth="900">
+      d:DesignHeight="450" d:DesignWidth="1280">
 
     <Grid>
         <Grid.Resources>
@@ -74,6 +74,8 @@
 
                 </StackPanel>
             </RadioButton>
+            <Label Content="{x:Static props:Resources.LbAdditionalParameters}" />
+            <TextBox Text="{Binding AdditionParam}" Width="200" />
             <Button Content="{x:Static props:Resources.BtnDownload}" Margin="5,0" Click="BtnDownload_Click" />
         </StackPanel>
     </Grid>

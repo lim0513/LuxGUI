@@ -151,7 +151,8 @@ namespace Lux_GUI
                 var info = ((Button)sender).DataContext as StreamInfo;
                 var arg = info.Args.Substring(3);
                 arg = arg.Replace("...", info.DownloadUrl);
-                arg = AdditionParam + arg;
+                if (!string.IsNullOrEmpty(AdditionParam))
+                    arg = AdditionParam + " " + arg;
                 LuxHelper.Instance.Download(arg);
             }
             catch (Exception ex)
